@@ -83,7 +83,7 @@ Alerting
 
 * Alarms in cloudwatch sends notification using SNS.
 
-# 3. Application archetecture
+# 3. Application architecture
 
 <img width="903" alt="image" src="https://user-images.githubusercontent.com/82893856/194475429-3eef53a5-ae8e-48e8-bbde-e6047f3d31fb.png">
 
@@ -171,8 +171,19 @@ All the traffic will be routed to us-east-1 only.
 # 7. Monitoring and alerting
 * Cloudwatch log group is used for lambda logs.
 * Cloudwatch is being used to monitor the major dynamoDB/apigw/healthchcek metrics using multiple alarms.
+
+<img width="1319" alt="image" src="https://user-images.githubusercontent.com/82893856/194484328-38d71922-2c75-4b81-b373-e1b63e5cb10d.png">
+
+
+
 * Healthcheck alarm has been setup (only in us-east-1 due to aws-limitations).
+
+<img width="822" alt="image" src="https://user-images.githubusercontent.com/82893856/194484397-8548aa3f-ccb3-4a39-9aab-c6a0e4ee5e35.png">
+
 * If healthcheck fails, SNS triggers an email to my personal email address.
+
+<img width="1032" alt="image" src="https://user-images.githubusercontent.com/82893856/194484584-a527b0cd-ecd1-4ec6-911c-812be001450c.png">
+
 
 
 
