@@ -74,7 +74,9 @@ Security
 
 Monitoring and logging
 
-* Cloudwatch to monitor and log aws resources.
+*   Cloudwatch to monitor and log aws resources.
+*   Route 53 healthchecks to monitor the apigw.
+*   Lambda function for apigw health check.
 
 Alerting
 
@@ -85,7 +87,18 @@ Alerting
 <img width="903" alt="image" src="https://user-images.githubusercontent.com/82893856/194475429-3eef53a5-ae8e-48e8-bbde-e6047f3d31fb.png">
 
 
-
+# 4. Folder structure
+.
+|
+terraform
+├── modules                   # terraform local modules
+|   ├── frontend              # Module for application frontend
+|   └── remote-state          # setup s3 as remote backed with dynamodb for tfstate locking
+|   ├── src/lambda_handlers   # Lambda functions source files
+...
+(terraform files)             # Terraform config to deploy backend db and global resources like iam and route53.
+...             
+└── README.md
 
 
 
