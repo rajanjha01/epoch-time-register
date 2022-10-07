@@ -105,14 +105,14 @@ terraform
 ```
 # 5. Deployment
 
-* #Prerequisite 
+ * # Prerequisite 
 
     1. Configure AWS on your local system with credetials in ~/.aws/credentials.
     2. Terraform (> v1.0.11 or higher). 
 
-* # Terraform Setup
+ * # Terraform Setup
 
-    # S3 as backend :
+    # S3 as backend 
 
     This project used S3 as remote backend with dynamoDB for tfstate locking.
     This is a one time activity to setup the s3 bucket and dynamodb required for the backend.
@@ -121,7 +121,23 @@ terraform
     2. Run ``` terraform init ``` ```terraform plan``` ```terraform deploy``` 
     3. Fetch the s3 bucket and dynamo table name from ```output```
 
+    # Application deployment
 
+    * We are deploying the frontend application with a modular approach in two different regions defind in main.tf. Root directory 
+      has the aws provider with an alias (prod-dr) to deploy the same set up of resources in two different regions.
+    * As a part of frontend module, we are deploying apigw with custom domain names, three lambda functions for get/post and health, certificates, cloudwatch alarms, sns topic and dns healthchecks in us-east-1 and us-west-2.
+    * DynamoDB, IAM role and route 53 traffic policy are getting created along with frondend applications.
+
+    Steps to deploy - 
+      * Clone the repo on your local system and ```cd cpoch/time/register/terraform`
+      * setup backend.tf with earlier created backend resources.
+      * setup aws providers.
+      * Create variables in ```variables.tf``` and put all the values in ```terraform.tfvars```
+      * Run ```terraform init``` ```terraform plan``` and ```terraform apply```. If dynamodb creation fails due to a bug, follow the instructions in tf file.
+      * Wait for few minutes and check the route53 heathcheck if they are healthy.
+      * Open ```https://httpie.io/app``` and make a post call to ```https://api.epochregister.click/EpochRegisterTime```
+      This should create an entry in the backend database.
+      image.png
 
 
 
