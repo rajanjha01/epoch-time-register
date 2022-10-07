@@ -103,6 +103,29 @@ terraform
 └── README.md
 
 ```
+# 5. Deployment
+
+*  Prerequisite 
+
+1. Configure AWS on your local system with credetials in ~/.aws/credentials.
+2. Terraform (> v1.0.11 or higher). 
+
+* Terraform Setup
+
+S3 as backend :
+
+This project used S3 as remote backend with dynamoDB for tfstate locking.
+This is a one time activity to setup the s3 bucket and dynamodb required for the backend.
+
+1. ``` cd modules/remote-state ``` 
+2. Run ``` terraform init ``` ```terraform plan``` ```terraform deploy``` 
+3. Fetch the s3 bucket and dynamo table name from ```output```
+
+
+
+
+
+
 
 
 
