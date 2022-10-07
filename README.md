@@ -160,6 +160,17 @@ When both the healthchecks are healthy, the request will be routed to both the r
 <img width="1552" alt="image" src="https://user-images.githubusercontent.com/82893856/194482568-441e82a2-419c-4fd6-ba93-f8cbe61a7146.png">
 
 * In case of one region going down, the healthcheck for that region will be unhealthy and requests will be routed to the healthy region.
+  Change the status of healtch lambda function to 400 in us-west-2, now we can see the healthcheck is unhealthy in this region.
+  
+  <img width="1290" alt="image" src="https://user-images.githubusercontent.com/82893856/194483262-85661ddb-acd8-436a-ba6b-b887454cbed7.png">
+
+All the traffic will be routed to us-east-1 only.
+
+<img width="1569" alt="image" src="https://user-images.githubusercontent.com/82893856/194483380-89126b1c-c437-437c-8ff9-d73aeb2bbcf0.png">
+
+# 7. Monitoring and alerting
+
+  
 
 
 
