@@ -151,7 +151,16 @@ terraform
 * We are using Route53 healthchecks to monitor the healthcheck of apigw. 
 * Route 53 is configured with weighted routed policy in this active-active setup.
 * If status of both healthchecks are healthy, route53 will redirect the traffic 50-50 to both the regions.
+<img width="1329" alt="image" src="https://user-images.githubusercontent.com/82893856/194482347-a55444fa-b07a-4149-826e-d761e05ff866.png">
+
+When both the healthchecks are healthy, the request will be routed to both the regions as per the below snippet, 
+
+<img width="1537" alt="image" src="https://user-images.githubusercontent.com/82893856/194482430-2499f2fc-2e92-4817-982a-896ba40a1590.png">
+
+<img width="1552" alt="image" src="https://user-images.githubusercontent.com/82893856/194482568-441e82a2-419c-4fd6-ba93-f8cbe61a7146.png">
+
 * In case of one region going down, the healthcheck for that region will be unhealthy and requests will be routed to the healthy region.
+
 
 
 
