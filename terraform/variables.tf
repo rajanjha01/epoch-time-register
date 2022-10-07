@@ -10,7 +10,7 @@ variable "aws_region_b" {}
 
 variable "aws_profile_name" {}
 variable "epoch-apigw" {
-  
+
 }
 variable "nodejsver" {}
 variable "lambdainvokerole" {}

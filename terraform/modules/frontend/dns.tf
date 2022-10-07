@@ -12,7 +12,7 @@ resource "aws_route53_health_check" "epochregister" {
   }
 
   depends_on = [
-      aws_api_gateway_base_path_mapping.epochregister
+    aws_api_gateway_base_path_mapping.epochregister
   ]
 }
 #####################################

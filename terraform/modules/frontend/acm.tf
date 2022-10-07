@@ -17,7 +17,7 @@ resource "aws_acm_certificate" "epochregister" {
     create_before_destroy = true
   }
   tags = {
-  Name = "epochregister"
+    Name = "epochregister"
   }
 }
 

@@ -122,13 +122,13 @@ resource "aws_cloudwatch_metric_alarm" "epoch-health-status" {
   dimensions = {
     HealthCheckId = "${aws_route53_health_check.epochregister.id}"
   }
-  actions_enabled     = "true"
-  alarm_description   = "This metric monitors whether the epoch apigw endpoint is down or not."
-  alarm_actions       = [aws_sns_topic.epoch-prod.arn]
+  actions_enabled           = "true"
+  alarm_description         = "This metric monitors whether the epoch apigw endpoint is down or not."
+  alarm_actions             = [aws_sns_topic.epoch-prod.arn]
   insufficient_data_actions = [aws_sns_topic.epoch-prod.arn]
-  ok_actions          = [aws_sns_topic.epoch-prod.arn]
-  treat_missing_data  = "breaching"
-  depends_on          = [aws_route53_health_check.epochregister]
+  ok_actions                = [aws_sns_topic.epoch-prod.arn]
+  treat_missing_data        = "breaching"
+  depends_on                = [aws_route53_health_check.epochregister]
 }
 
 ############################################################

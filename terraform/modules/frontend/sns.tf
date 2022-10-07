@@ -2,9 +2,9 @@
 
 resource "aws_kms_key" "epochkey" {
   description             = "KMS key for epoch SNS topic"
-  policy                  =  data.aws_iam_policy_document.epochkey_policy_document.json
+  policy                  = data.aws_iam_policy_document.epochkey_policy_document.json
   deletion_window_in_days = 30
-  
+
 }
 resource "aws_kms_alias" "epochkey-alias" {
   name          = "alias/epochkey"
@@ -22,31 +22,31 @@ data "aws_iam_policy_document" "epochkey_policy_document" {
       type        = "AWS"
       identifiers = ["arn:aws:iam::${var.aws_account_id}:root"]
     }
-  }    
-statement {
-    sid     = "AllowCloudWatchforCMK"
-    effect  = "Allow"
+  }
+  statement {
+    sid    = "AllowCloudWatchforCMK"
+    effect = "Allow"
     resources = [
       "*"
     ]
     actions = [
-    "kms:Decrypt",
-    "kms:GenerateDataKey*"
+      "kms:Decrypt",
+      "kms:GenerateDataKey*"
     ]
     principals {
       type        = "Service"
       identifiers = ["cloudwatch.amazonaws.com"]
+    }
   }
 }
-}  
 output "key_arn" {
-	value = aws_kms_key.epochkey.arn
+  value = aws_kms_key.epochkey.arn
 }
 ##SNS Topic to send all the CW alarms and notify the users in the FMB
 
 resource "aws_sns_topic" "epoch-prod" {
-  name         = "epoch-prod-alerts"
-  display_name = "epoch-prod-alerts"
+  name              = "epoch-prod-alerts"
+  display_name      = "epoch-prod-alerts"
   kms_master_key_id = "alias/epochkey"
 }
 
@@ -61,14 +61,14 @@ data "aws_iam_policy_document" "epoch-us-prod_sns_policy_document" {
 
   statement {
     actions = [
-        "SNS:GetTopicAttributes",
-        "SNS:SetTopicAttributes",
-        "SNS:AddPermission",
-        "SNS:RemovePermission",
-        "SNS:DeleteTopic",
-        "SNS:Subscribe",
-        "SNS:ListSubscriptionsByTopic",
-        "SNS:Publish"
+      "SNS:GetTopicAttributes",
+      "SNS:SetTopicAttributes",
+      "SNS:AddPermission",
+      "SNS:RemovePermission",
+      "SNS:DeleteTopic",
+      "SNS:Subscribe",
+      "SNS:ListSubscriptionsByTopic",
+      "SNS:Publish"
     ]
 
     condition {
@@ -89,7 +89,7 @@ data "aws_iam_policy_document" "epoch-us-prod_sns_policy_document" {
 
     resources = [
       aws_sns_topic.epoch-prod.arn
-,
+      ,
     ]
 
     sid = "__default_statement_ID"
@@ -101,7 +101,7 @@ data "aws_iam_policy_document" "epoch-us-prod_sns_policy_document" {
 resource "aws_sns_topic_subscription" "epoch-us-prod_target" {
   topic_arn = aws_sns_topic.epoch-prod.arn
 
-  protocol  = "email"
-  endpoint  = "jha.rajan1987@gmail.com"
+  protocol = "email"
+  endpoint = "jha.rajan1987@gmail.com"
 }
 ##################################################################

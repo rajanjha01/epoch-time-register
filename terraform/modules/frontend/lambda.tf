@@ -7,19 +7,19 @@
 resource "aws_lambda_function" "getepoch" {
   function_name = "get-epoch"
   description   = "Get epoch register time from dynamodb"
-  role             = "arn:aws:iam::${var.aws_account_id}:role/${var.lambdainvokerole}"
-  runtime          =  var.nodejsver
+  role          = "arn:aws:iam::${var.aws_account_id}:role/${var.lambdainvokerole}"
+  runtime       = var.nodejsver
   handler       = "get-epoch.handler"
   architectures = ["x86_64"]
-  filename   = "./src/lambda_handler/get-epoch.zip"
+  filename      = "./src/lambda_handler/get-epoch.zip"
 
-    environment {
-    	  variables = {
-    DBTable    = var.db_table_name
-    Serverless = "Terraform"
-    Region     =    var.aws_region
+  environment {
+    variables = {
+      DBTable    = var.db_table_name
+      Serverless = "Terraform"
+      Region     = var.aws_region
+    }
   }
-}
 }
 ################################################################
 ##post function
@@ -34,13 +34,13 @@ resource "aws_lambda_function" "epochregister" {
 
   filename = "./src/lambda_handler/epoch-register.zip"
 
-    environment {
+  environment {
     variables = {
-    DBTable    = var.db_table_name
-    Serverless = "Terraform"
-    Region = var.aws_region
+      DBTable    = var.db_table_name
+      Serverless = "Terraform"
+      Region     = var.aws_region
+    }
   }
-}
 }
 #################################################################
 ##health function
@@ -55,12 +55,12 @@ resource "aws_lambda_function" "health" {
 
   filename = "./src/lambda_handler/health.py.zip"
 
-    environment {
+  environment {
     variables = {
-    STATUS     = "200"
-    Serverless = "Terraform"
-    Region = var.aws_region
+      STATUS     = "200"
+      Serverless = "Terraform"
+      Region     = var.aws_region
+    }
   }
-}
 }
 #################################################################

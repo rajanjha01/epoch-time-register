@@ -14,7 +14,7 @@ resource "aws_api_gateway_rest_api" "epochregister" {
 ##### Creating getEpoch api with the necessary apigw config ##############
 
 resource "aws_api_gateway_resource" "getepoch" {
-  rest_api_id = aws_api_gateway_rest_api.epochregister.id  
+  rest_api_id = aws_api_gateway_rest_api.epochregister.id
   parent_id   = aws_api_gateway_rest_api.epochregister.root_resource_id
   path_part   = "getEpoch"
 }
@@ -27,7 +27,7 @@ resource "aws_api_gateway_method" "getepoch" {
 }
 
 resource "aws_api_gateway_integration" "getepoch" {
-  rest_api_id             = aws_api_gateway_rest_api.epochregister.id 
+  rest_api_id             = aws_api_gateway_rest_api.epochregister.id
   resource_id             = aws_api_gateway_resource.getepoch.id
   http_method             = aws_api_gateway_method.getepoch.http_method
   type                    = "AWS_PROXY"
@@ -38,9 +38,9 @@ resource "aws_api_gateway_integration" "getepoch" {
 ##### Creating EpochRegisterTime api ##################################
 
 resource "aws_api_gateway_resource" "epochregistertime" {
-  rest_api_id = aws_api_gateway_rest_api.epochregister.id  
+  rest_api_id = aws_api_gateway_rest_api.epochregister.id
   parent_id   = aws_api_gateway_rest_api.epochregister.root_resource_id
-  path_part   = "EpochRegisterTime"  
+  path_part   = "EpochRegisterTime"
 }
 
 resource "aws_api_gateway_method" "epochregistertime" {
@@ -51,7 +51,7 @@ resource "aws_api_gateway_method" "epochregistertime" {
 }
 
 resource "aws_api_gateway_integration" "epochregistertime" {
-  rest_api_id             = aws_api_gateway_rest_api.epochregister.id  
+  rest_api_id             = aws_api_gateway_rest_api.epochregister.id
   http_method             = aws_api_gateway_method.epochregistertime.http_method
   resource_id             = aws_api_gateway_resource.epochregistertime.id
   integration_http_method = "POST"
@@ -60,9 +60,9 @@ resource "aws_api_gateway_integration" "epochregistertime" {
 }
 ##### Creating health api ##################################
 resource "aws_api_gateway_resource" "epochhealth" {
-  rest_api_id = aws_api_gateway_rest_api.epochregister.id  
+  rest_api_id = aws_api_gateway_rest_api.epochregister.id
   parent_id   = aws_api_gateway_rest_api.epochregister.root_resource_id
-  path_part   = "health"  
+  path_part   = "health"
 }
 
 resource "aws_api_gateway_method" "epochhealth" {
@@ -73,7 +73,7 @@ resource "aws_api_gateway_method" "epochhealth" {
 }
 
 resource "aws_api_gateway_integration" "epochhealth" {
-  rest_api_id             = aws_api_gateway_rest_api.epochregister.id  
+  rest_api_id             = aws_api_gateway_rest_api.epochregister.id
   http_method             = aws_api_gateway_method.epochhealth.http_method
   resource_id             = aws_api_gateway_resource.epochhealth.id
   integration_http_method = "POST"
@@ -83,7 +83,7 @@ resource "aws_api_gateway_integration" "epochhealth" {
 ## apigw deployment
 
 resource "aws_api_gateway_deployment" "epochregister" {
-  
+
   rest_api_id = aws_api_gateway_rest_api.epochregister.id
 
   triggers = {
@@ -94,7 +94,7 @@ resource "aws_api_gateway_deployment" "epochregister" {
     #       calculate a hash against whole resources. Be aware that using whole
     #       resources will show a difference after the initial implementation.
     #       It will stabilize to only change when resources change afterwards.
-      redeployment = sha1(jsonencode([
+    redeployment = sha1(jsonencode([
       aws_api_gateway_resource.getepoch.id,
       aws_api_gateway_method.getepoch.id,
       aws_api_gateway_integration.getepoch.id,
@@ -126,7 +126,7 @@ resource "aws_lambda_permission" "getepoch_lambda" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.getepoch.arn
   principal     = "apigateway.amazonaws.com"
-  source_arn = "arn:aws:execute-api:${var.aws_region}:${var.aws_account_id}:${aws_api_gateway_rest_api.epochregister.id}/*/${aws_api_gateway_method.getepoch.http_method}${aws_api_gateway_resource.getepoch.path}"
+  source_arn    = "arn:aws:execute-api:${var.aws_region}:${var.aws_account_id}:${aws_api_gateway_rest_api.epochregister.id}/*/${aws_api_gateway_method.getepoch.http_method}${aws_api_gateway_resource.getepoch.path}"
 }
 
 resource "aws_lambda_permission" "epochregister_lambda" {
@@ -134,7 +134,7 @@ resource "aws_lambda_permission" "epochregister_lambda" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.epochregister.arn
   principal     = "apigateway.amazonaws.com"
-  source_arn = "arn:aws:execute-api:${var.aws_region}:${var.aws_account_id}:${aws_api_gateway_rest_api.epochregister.id}/*/${aws_api_gateway_method.epochregistertime.http_method}${aws_api_gateway_resource.epochregistertime.path}"
+  source_arn    = "arn:aws:execute-api:${var.aws_region}:${var.aws_account_id}:${aws_api_gateway_rest_api.epochregister.id}/*/${aws_api_gateway_method.epochregistertime.http_method}${aws_api_gateway_resource.epochregistertime.path}"
 }
 
 resource "aws_lambda_permission" "health_lambda" {
@@ -142,15 +142,15 @@ resource "aws_lambda_permission" "health_lambda" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.health.arn
   principal     = "apigateway.amazonaws.com"
-  source_arn = "arn:aws:execute-api:${var.aws_region}:${var.aws_account_id}:${aws_api_gateway_rest_api.epochregister.id}/*/${aws_api_gateway_method.epochhealth.http_method}${aws_api_gateway_resource.epochhealth.path}"
+  source_arn    = "arn:aws:execute-api:${var.aws_region}:${var.aws_account_id}:${aws_api_gateway_rest_api.epochregister.id}/*/${aws_api_gateway_method.epochhealth.http_method}${aws_api_gateway_resource.epochhealth.path}"
 }
 ########### Custom Domain public for APIGW - Registers a custom domain name for use with AWS API Gateway
 
 resource "aws_api_gateway_domain_name" "epochregister" {
   domain_name              = "api.epochregister.click"
   regional_certificate_arn = aws_acm_certificate_validation.epochregister.certificate_arn
-  security_policy = "TLS_1_2"
-  
+  security_policy          = "TLS_1_2"
+
   endpoint_configuration {
     types = ["REGIONAL"]
   }

@@ -37,17 +37,17 @@ resource "aws_kms_key" "secondary" {
 module "dynamodb_table" {
   source = "terraform-aws-modules/dynamodb-table/aws"
 
-  name                = var.dynamodb-table-name
-  hash_key            = "id"
-  billing_mode        = "PROVISIONED"
-  read_capacity       = 5
-  write_capacity      = 5
-  autoscaling_enabled = true
-  stream_enabled      = true
-  stream_view_type    = "NEW_AND_OLD_IMAGES"
+  name                               = var.dynamodb-table-name
+  hash_key                           = "id"
+  billing_mode                       = "PROVISIONED"
+  read_capacity                      = 5
+  write_capacity                     = 5
+  autoscaling_enabled                = true
+  stream_enabled                     = true
+  stream_view_type                   = "NEW_AND_OLD_IMAGES"
   server_side_encryption_enabled     = true
   server_side_encryption_kms_key_arn = aws_kms_key.primary.arn
-  point_in_time_recovery_enabled = true
+  point_in_time_recovery_enabled     = true
 
 
   autoscaling_read = {

@@ -14,8 +14,8 @@ data "aws_iam_policy_document" "epochhandler_role_assume_policy" {
 }
 
 resource "aws_iam_role" "epochhandler-iam-role" {
-  name                 = "epochhandler-iam-role"
-  assume_role_policy   = data.aws_iam_policy_document.epochhandler_role_assume_policy.json
+  name               = "epochhandler-iam-role"
+  assume_role_policy = data.aws_iam_policy_document.epochhandler_role_assume_policy.json
 }
 
 # A simple IAM policy document
@@ -42,7 +42,7 @@ data "aws_iam_policy_document" "epochhandler_iam_policy_doc" {
       "*"
     ]
     actions = [
-     "dynamodb:*"
+      "dynamodb:*"
     ]
   }
   statement {
@@ -52,7 +52,7 @@ data "aws_iam_policy_document" "epochhandler_iam_policy_doc" {
       "*"
     ]
     actions = [
-    "s3:*"
+      "s3:*"
     ]
   }
 

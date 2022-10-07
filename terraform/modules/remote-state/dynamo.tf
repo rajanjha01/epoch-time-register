@@ -8,7 +8,7 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
   server_side_encryption {
     enabled = true
   }
-  
+
   point_in_time_recovery {
     enabled = true
   }
