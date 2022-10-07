@@ -138,6 +138,12 @@ terraform
       * Open ```https://httpie.io/app``` and make a post call to ```https://api.epochregister.click/EpochRegisterTime```
       This should create an entry in the backend database.
 
+<img width="1567" alt="image" src="https://user-images.githubusercontent.com/82893856/194481235-9c286f16-237f-4afc-a31e-cf64680142be.png">
+
+      * We can see the newly created entry in the dynamodb. 
+<img width="1482" alt="image" src="https://user-images.githubusercontent.com/82893856/194481392-5c8b3a4e-774c-4c18-9f73-be75ec64b74f.png">
+      * DynamoDB should be updated in both the regions with the latest epoch entry.
+
 
 
 
