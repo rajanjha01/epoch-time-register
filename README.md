@@ -37,11 +37,6 @@ This solution deploys this serverless application in a multi-region active-activ
 
 # 2. Requirements
 
-|API application as frontend  | Uses two api’s - /getEpoch and /EpochRegisterTime |
-------------------------------|---------------------------------------------------|
-|Database as backend.         | Using a nosql database in the backend             |
-------------------------------| --------------------------------------------------|
-|Each API call has to register|Each /EpochRegisterTime api call will create a new |
-|                             |entry in backend nosql database                    |
-|current epoch to the database|                                                   |
------------------------------------------------------------------------------------
+|API application as frontend  | Uses two api’s - /getEpoch and /EpochRegisterTime                    |
+|Database as backend          | Using a nosql database in the backend                                |
+|Each API call has to register current epoch to the database |Each /EpochRegisterTime api call will create a new entry in backend db|
