@@ -88,6 +88,8 @@ Alerting
 
 
 # 4. Folder structure
+
+```
 .
 |
 terraform
@@ -99,6 +101,8 @@ terraform
 (terraform files)             # Terraform config to deploy backend db and global resources like iam and route53.
 ...             
 └── README.md
+
+```
 
 
 
