@@ -1,2 +1,11 @@
-# epoch-time-register
-A project to store the epoch time in the backend DB
+# EPOCHRegister
+# Solution Architecture & High-Level Design
+
+--------------------------------------------------------------------------------------------
+|Solution Name:     | EPOCHRegister – Register the current epoch time to a backend database | 
+--------------------|-----------------------------------------------------------------------|
+|Author             | Rajan Jha                                                             |
+---------------------------------------------------------------------------------------------
+
+
+
