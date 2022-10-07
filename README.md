@@ -16,8 +16,9 @@
 5.	Deployment
    *	Prerequisite
    *	TF setup
-6.	Monitoring and Alerting
-7.	HA Failover
+6.  HA Failover
+7.	Monitoring and Alerting
+
 
 # 1.Solution Summary
 
@@ -140,9 +141,20 @@ terraform
 
 <img width="1567" alt="image" src="https://user-images.githubusercontent.com/82893856/194481235-9c286f16-237f-4afc-a31e-cf64680142be.png">
 
-      * We can see the newly created entry in the dynamodb. 
+      We can see the newly created entry in the dynamodb. 
 <img width="1482" alt="image" src="https://user-images.githubusercontent.com/82893856/194481392-5c8b3a4e-774c-4c18-9f73-be75ec64b74f.png">
-      * DynamoDB should be updated in both the regions with the latest epoch entry.
+      DynamoDB should be updated in both the regions with the latest epoch entry.
+
+
+# 6. HA and DNS failover
+
+* We are using Route53 healthchecks to monitor the healthcheck of apigw. 
+* Route 53 is configured with weighted routed policy in this active-active setup.
+* If status of both healthchecks are healthy, route53 will redirect the traffic 50-50 to both the regions.
+* In case of one region going down, the healthcheck for that region will be unhealthy and requests will be routed to the healthy region.
+
+
+
 
 
 
