@@ -1,0 +1,36 @@
+{
+    "AWSPolicyFormatVersion": "2015-10-01",
+    "RecordType": "CNAME",
+    "Endpoints": {
+      "endpoint-1": {
+        "Type": "value",
+        "Value": "d-z3zxh7fd7j.execute-api.us-east-1.amazonaws.com"
+        },
+      "endpoint-2": {
+        "Type": "value",
+        "Value": "d-udw34ipggb.execute-api.us-west-2.amazonaws.com"
+        }
+      },
+    "Rules": {
+      "weighted-rule": {
+        "RuleType": "weighted",
+        "Items": [
+          {
+          "Weight": "50",
+          "EvaluateTargetHealth": true,
+          "EndpointReference": "endpoint-1",
+          "HealthCheck": "fe5e5e2a-cb13-43ce-9cf1-93cc97db0cbc"
+
+          },
+          {
+          "Weight": "50",
+          "EvaluateTargetHealth": true,
+          "EndpointReference": "endpoint-2",
+          "HealthCheck": "2223b98a-5209-406d-aa69-618548c272a5"
+
+          }
+        ]
+      }
+    },
+    "StartRule": "weighted-rule"
+}

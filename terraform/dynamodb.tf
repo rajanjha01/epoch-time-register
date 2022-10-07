@@ -72,6 +72,7 @@ module "dynamodb_table" {
     },
 
   ]
+  
   ## There is a bug while creating replica with autoscaling. https://github.com/hashicorp/terraform-provider-aws/issues/13097
   ## Added replica block after the table creation in first apply and it works fine. 
   replica_regions = [{
