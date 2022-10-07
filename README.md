@@ -169,6 +169,13 @@ All the traffic will be routed to us-east-1 only.
 <img width="1569" alt="image" src="https://user-images.githubusercontent.com/82893856/194483380-89126b1c-c437-437c-8ff9-d73aeb2bbcf0.png">
 
 # 7. Monitoring and alerting
+* Cloudwatch log group is used for lambda logs.
+* Cloudwatch is being used to monitor the major dynamoDB/apigw/healthchcek metrics using multiple alarms.
+* Healthcheck alarm has been setup (only in us-east-1 due to aws-limitations).
+* If healthcheck fails, SNS triggers an email to my personal email address.
+
+
+
 
   
 
