@@ -83,7 +83,7 @@ Alerting
 
 * Alarms in cloudwatch sends notification using SNS.
 
-# 3. Application archetecture
+# 3. Application architecture
 
 <img width="903" alt="image" src="https://user-images.githubusercontent.com/82893856/194475429-3eef53a5-ae8e-48e8-bbde-e6047f3d31fb.png">
 
