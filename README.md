@@ -129,7 +129,7 @@ terraform
     * DynamoDB, IAM role and route 53 traffic policy are getting created along with frondend applications.
 
     Steps to deploy - 
-      * Clone the repo on your local system and ```cd cpoch/time/register/terraform`
+      * Clone the repo on your local system and ```cd cpoch/time/register/terraform```
       * setup backend.tf with earlier created backend resources.
       * setup aws providers.
       * Create variables in ```variables.tf``` and put all the values in ```terraform.tfvars```
@@ -137,7 +137,11 @@ terraform
       * Wait for few minutes and check the route53 heathcheck if they are healthy.
       * Open ```https://httpie.io/app``` and make a post call to ```https://api.epochregister.click/EpochRegisterTime```
       This should create an entry in the backend database.
-      image.png
+
+
+
+
+
 
 
 
